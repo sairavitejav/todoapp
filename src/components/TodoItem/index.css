@@ -1,0 +1,23 @@
+/* Write your CSS here */
+button {
+  background-color: #ffffff;
+  color: #ff0b37;
+  border: 2px solid #ff0b37;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+}
+p {
+  color: #000000;
+  font-size: 20px;
+}
+.each-todo-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+  font-family: Roboto;
+}
