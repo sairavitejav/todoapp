@@ -39,7 +39,7 @@ const initialTodosList = [
 ]
 
 class SimpleTodos extends Component {
-  state = {todosList: initialTodosList}
+  state = {todosList: initialTodosList, userTodo: ''}
 
   deleteUser = id => {
     const {todosList} = this.state
@@ -47,18 +47,74 @@ class SimpleTodos extends Component {
     this.setState({todosList: filteredTodosList})
   }
 
+  readUserTodo = event => {
+    this.setState({userTodo: event.target.value})
+  }
+
+  addNewTodo = () => {
+    const {todosList, userTodo} = this.state
+    const inputList = userTodo.split(' ')
+    const lastPart = inputList.slice(-1)
+    const parsedNum = Number(lastPart)
+
+    if (typeof parsedNum === 'number') {
+      for (let i = 0; i < parsedNum; i += 1) {
+        const newTodo = {
+          id: todosList.length + 1,
+          title: userTodo.slice(0, userTodo.length - 2),
+        }
+
+        this.setState(prevState => ({
+          todosList: [...prevState.todosList, newTodo],
+          userTodo: '',
+        }))
+      }
+    }
+    const newTodo = {
+      id: todosList.length + 1,
+      title: userTodo,
+    }
+
+    this.setState(prevState => ({
+      todosList: [...prevState.todosList, newTodo],
+      userTodo: '',
+    }))
+  }
+
+  updateTodo = (id, updatedTitle) => {
+    this.setState(prevState => ({
+      todosList: prevState.todosList.map(todo =>
+        todo.id === id ? {...todo, title: updatedTitle} : todo,
+      ),
+    }))
+  }
+
   render() {
-    const {todosList} = this.state
+    const {todosList, userTodo} = this.state
+
     return (
       <div className="main-container">
         <div className="todos-container">
           <h1 className="main-header">Simple Todos</h1>
+          <div className="input-container">
+            <input
+              onChange={this.readUserTodo}
+              value={userTodo}
+              className="input"
+              type="text"
+              placeholder="Add your Todo"
+            />
+            <button onClick={this.addNewTodo} type="button" className="add-btn">
+              Add
+            </button>
+          </div>
           <ul>
             {todosList.map(eachTodo => (
               <TodoItem
                 eachTodo={eachTodo}
                 key={eachTodo.id}
                 deleteUser={this.deleteUser}
+                updateTodo={this.updateTodo}
               />
             ))}
           </ul>

@@ -1,5 +1,5 @@
 /* Write your CSS here */
-button {
+.delete-button {
   background-color: #ffffff;
   color: #ff0b37;
   border: 2px solid #ff0b37;
@@ -10,9 +10,21 @@ button {
   height: 40px;
   cursor: pointer;
 }
-p {
+.title {
   color: #000000;
   font-size: 20px;
+  width: 500px;
+}
+.title-checked {
+  text-decoration: line-through;
+}
+.edit-title {
+  width: 500px;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  padding: 8px;
+  outline: none;
 }
 .each-todo-container {
   display: flex;
@@ -20,4 +32,24 @@ p {
   justify-content: space-between;
   list-style-type: none;
   font-family: Roboto;
+}
+.edit-save-btn {
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  width: 100px;
+  height: 40px;
+  cursor: pointer;
+}
+.save-btn {
+  background-color: green;
+}
+.edit-btn {
+  background-color: #ff0b37;
+}
+.check-cont {
+  display: flex;
+  justify-content: space-between;
 }
